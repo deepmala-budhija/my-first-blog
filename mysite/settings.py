@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_datepicker_plus',
     'blog.apps.BlogConfig',
-    'MFS.apps.MFSConfig'
+    'MFS.apps.MFSConfig',
+    'widget_tweaks',
+    'crudapp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,8 +82,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mfs',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '123456',
     }
 }
 
@@ -115,6 +123,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Use BOOTSTRAP3 if you are using Bootstrap 3
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
 
 
 # Static files (CSS, JavaScript, Images)
